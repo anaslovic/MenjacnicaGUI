@@ -92,7 +92,7 @@ public class MenjacnicaGUI extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/icons/coins-icon.png")));
 		setTitle("Menjacnica");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 635, 400);
+		setBounds(100, 100, 657, 400);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(47, 79, 79));
@@ -191,7 +191,7 @@ public class MenjacnicaGUI extends JFrame {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setBackground(new Color(47, 79, 79));
-			panel.setPreferredSize(new Dimension(150, 10));
+			panel.setPreferredSize(new Dimension(155, 10));
 			panel.setLayout(null);
 			panel.add(getBtnNewButton());
 			panel.add(getBtnNewButton_1());
@@ -212,7 +212,7 @@ public class MenjacnicaGUI extends JFrame {
 					dodaj.setVisible(true);
 				}
 			});
-			btnNewButton.setBounds(10, 11, 130, 33);
+			btnNewButton.setBounds(10, 11, 140, 33);
 		}
 		return btnNewButton;
 	}
@@ -227,16 +227,22 @@ public class MenjacnicaGUI extends JFrame {
 			});
 			btnNewButton_1.setBackground(new Color(240, 230, 140));
 			btnNewButton_1.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/playstation-cross-dark-icon.png")));
-			btnNewButton_1.setBounds(10, 55, 130, 33);
+			btnNewButton_1.setBounds(10, 55, 140, 33);
 		}
 		return btnNewButton_1;
 	}
 	private JButton getBtnNewButton_2() {
 		if (btnNewButton_2 == null) {
 			btnNewButton_2 = new JButton("Izvrsi zamenu");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IzvrsiZamenuGUI z = new IzvrsiZamenuGUI(mg);
+					z.setVisible(true);
+				}
+			});
 			btnNewButton_2.setBackground(new Color(240, 230, 140));
 			btnNewButton_2.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/Arrow-reload-3-icon.png")));
-			btnNewButton_2.setBounds(10, 99, 130, 33);
+			btnNewButton_2.setBounds(10, 99, 140, 33);
 		}
 		return btnNewButton_2;
 	}
@@ -358,6 +364,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzvrsiZamenu() {
 		if (mntmIzvrsiZamenu == null) {
 			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+			mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IzvrsiZamenuGUI z = new IzvrsiZamenuGUI(mg);
+					z.setVisible(true);
+				}
+			});
 			mntmIzvrsiZamenu.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/malaa.png")));
 		}
 		return mntmIzvrsiZamenu;
