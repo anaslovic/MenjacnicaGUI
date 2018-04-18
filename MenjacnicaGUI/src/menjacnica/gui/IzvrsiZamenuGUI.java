@@ -51,7 +51,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 293, 273);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(240, 230, 140));
+		contentPane.setBackground(new Color(60, 179, 113));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
