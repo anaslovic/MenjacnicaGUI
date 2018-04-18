@@ -23,13 +23,12 @@ import javax.swing.JFileChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JSeparator;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JTextArea;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -61,6 +60,9 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmNewMenuItem_3;
 	private JMenuItem mntmNewMenuItem_4;
 	private JMenuItem mntmIzvrsiZamenu;
+	
+	private MenjacnicaGUI mg;
+
 
 	/**
 	 * Launch the application.
@@ -100,6 +102,8 @@ public class MenjacnicaGUI extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.EAST);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
+		
+		this.mg = this;
 	}
 
 	private JMenuBar getMenuBar_1() {
@@ -200,6 +204,10 @@ public class MenjacnicaGUI extends JFrame {
 			btnNewButton.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/dollar-collection-icon.png")));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					DodajKursGUI dodaj = 
+							new DodajKursGUI(mg);
+					
+					dodaj.setVisible(true);
 				}
 			});
 			btnNewButton.setBounds(10, 11, 130, 33);
@@ -311,6 +319,14 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmNewMenuItem_3() {
 		if (mntmNewMenuItem_3 == null) {
 			mntmNewMenuItem_3 = new JMenuItem("Dodaj kurs");
+			mntmNewMenuItem_3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DodajKursGUI dodaj = 
+							new DodajKursGUI(mg);
+					
+					dodaj.setVisible(true);
+				}
+			});
 			mntmNewMenuItem_3.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/malim.png")));
 		}
 		return mntmNewMenuItem_3;
@@ -355,5 +371,8 @@ public class MenjacnicaGUI extends JFrame {
 			
 			if (opcija == JOptionPane.YES_OPTION)
 				System.exit(0);
+	}
+	public void ispisiNovi(String s) {
+		textArea.setText(textArea.getText()+s+"\n");
 	}
 }
