@@ -96,6 +96,7 @@ public class MenjacnicaGUI extends JFrame {
 		setBounds(100, 100, 614, 386);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(47, 79, 79));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -109,6 +110,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuBar getMenuBar_1() {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
+			menuBar.setBackground(new Color(143, 188, 143));
 			menuBar.add(getMnFile());
 			menuBar.add(getMnHelp());
 		}
@@ -182,6 +184,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
+			scrollPane.setBackground(new Color(143, 188, 143));
 			scrollPane.setViewportView(getTable());
 		}
 		return scrollPane;
@@ -189,6 +192,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			panel.setBackground(new Color(47, 79, 79));
 			panel.setPreferredSize(new Dimension(150, 10));
 			panel.setLayout(null);
 			panel.add(getBtnNewButton());
@@ -235,8 +239,9 @@ public class MenjacnicaGUI extends JFrame {
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
+			panel_1.setBackground(new Color(143, 188, 143));
 			panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(47, 79, 79)));
-			panel_1.setPreferredSize(new Dimension(10, 65));
+			panel_1.setPreferredSize(new Dimension(10, 80));
 			panel_1.setLayout(new BorderLayout(0, 0));
 			panel_1.add(getScrollPane_1(), BorderLayout.CENTER);
 		}
@@ -273,6 +278,8 @@ public class MenjacnicaGUI extends JFrame {
 					{null, null, null, null, null, null},
 					{null, null, null, null, null, null},
 					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
+					{null, null, null, null, null, null},
 				},
 				new String[] {
 					"Sifra", "Skraceni naziv", "Prodajni", "Srednji", "Kupovni", "Naziv"
@@ -285,8 +292,8 @@ public class MenjacnicaGUI extends JFrame {
 					return columnTypes[columnIndex];
 				}
 			});
-			addPopup(table, getPopupMenu());
 			table.getColumnModel().getColumn(1).setPreferredWidth(90);
+			addPopup(table, getPopupMenu());
 		}
 		return table;
 	}
