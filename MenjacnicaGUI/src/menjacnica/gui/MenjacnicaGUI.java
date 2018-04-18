@@ -61,6 +61,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmNewMenuItem_3;
 	private JMenuItem mntmNewMenuItem_4;
 	private JMenuItem mntmIzvrsiZamenu;
+	private MenjacnicaGUI mg;
 
 	/**
 	 * Launch the application.
@@ -100,6 +101,7 @@ public class MenjacnicaGUI extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.EAST);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
+		this.mg = this;
 	}
 
 	private JMenuBar getMenuBar_1() {
@@ -209,6 +211,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Obrisi kurs\r\n\r\n");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ObrisiKursGUI g = new ObrisiKursGUI(mg);
+					g.setVisible(true);
+				}
+			});
 			btnNewButton_1.setBackground(new Color(240, 230, 140));
 			btnNewButton_1.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/playstation-cross-dark-icon.png")));
 			btnNewButton_1.setBounds(10, 55, 130, 33);
@@ -318,6 +326,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmNewMenuItem_4() {
 		if (mntmNewMenuItem_4 == null) {
 			mntmNewMenuItem_4 = new JMenuItem("Obrisi kurs");
+			mntmNewMenuItem_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ObrisiKursGUI g = new ObrisiKursGUI(mg);
+					g.setVisible(true);
+				}
+			});
 			mntmNewMenuItem_4.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/malix.png")));
 		}
 		return mntmNewMenuItem_4;
@@ -355,5 +369,9 @@ public class MenjacnicaGUI extends JFrame {
 			
 			if (opcija == JOptionPane.YES_OPTION)
 				System.exit(0);
+	}
+	
+	public void ispisi(String s) {
+		textArea.setText(textArea.getText()+s+"\n");
 	}
 }
