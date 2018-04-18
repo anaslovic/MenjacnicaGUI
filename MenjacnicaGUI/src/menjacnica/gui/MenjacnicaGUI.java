@@ -63,7 +63,6 @@ public class MenjacnicaGUI extends JFrame {
 	
 	private MenjacnicaGUI mg;
 
-
 	/**
 	 * Launch the application.
 	 */
@@ -93,7 +92,7 @@ public class MenjacnicaGUI extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/icons/coins-icon.png")));
 		setTitle("Menjacnica");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 614, 386);
+		setBounds(100, 100, 635, 400);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(47, 79, 79));
@@ -103,7 +102,6 @@ public class MenjacnicaGUI extends JFrame {
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.EAST);
 		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
-		
 		this.mg = this;
 	}
 
@@ -221,6 +219,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnNewButton_1() {
 		if (btnNewButton_1 == null) {
 			btnNewButton_1 = new JButton("Obrisi kurs\r\n\r\n");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ObrisiKursGUI g = new ObrisiKursGUI(mg);
+					g.setVisible(true);
+				}
+			});
 			btnNewButton_1.setBackground(new Color(240, 230, 140));
 			btnNewButton_1.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/playstation-cross-dark-icon.png")));
 			btnNewButton_1.setBounds(10, 55, 130, 33);
@@ -241,7 +245,7 @@ public class MenjacnicaGUI extends JFrame {
 			panel_1 = new JPanel();
 			panel_1.setBackground(new Color(143, 188, 143));
 			panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(47, 79, 79)));
-			panel_1.setPreferredSize(new Dimension(10, 80));
+			panel_1.setPreferredSize(new Dimension(10, 90));
 			panel_1.setLayout(new BorderLayout(0, 0));
 			panel_1.add(getScrollPane_1(), BorderLayout.CENTER);
 		}
@@ -341,6 +345,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmNewMenuItem_4() {
 		if (mntmNewMenuItem_4 == null) {
 			mntmNewMenuItem_4 = new JMenuItem("Obrisi kurs");
+			mntmNewMenuItem_4.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ObrisiKursGUI g = new ObrisiKursGUI(mg);
+					g.setVisible(true);
+				}
+			});
 			mntmNewMenuItem_4.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/malix.png")));
 		}
 		return mntmNewMenuItem_4;
@@ -379,7 +389,9 @@ public class MenjacnicaGUI extends JFrame {
 			if (opcija == JOptionPane.YES_OPTION)
 				System.exit(0);
 	}
+
 	public void ispisiNovi(String s) {
 		textArea.setText(textArea.getText()+s+"\n");
 	}
+	
 }
