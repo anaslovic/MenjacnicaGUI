@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class DodajKursGUI extends JFrame {
 
@@ -158,6 +159,7 @@ public class DodajKursGUI extends JFrame {
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
 			btnDodaj = new JButton("Dodaj");
+			btnDodaj.setIcon(new ImageIcon(DodajKursGUI.class.getResource("/icons/as.png")));
 			btnDodaj.setBackground(new Color(255, 255, 255));
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
