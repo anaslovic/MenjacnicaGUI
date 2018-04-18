@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
@@ -17,6 +18,8 @@ import java.awt.event.InputEvent;
 import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -31,6 +34,9 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -76,9 +82,15 @@ public class MenjacnicaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MenjacnicaGUI() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				izadji();
+			}
+		});
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/icons/coins-icon.png")));
 		setTitle("Menjacnica");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 614, 386);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
@@ -117,6 +129,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmNewMenuItem() {
 		if (mntmNewMenuItem == null) {
 			mntmNewMenuItem = new JMenuItem("Open");
+			mntmNewMenuItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					otvori();
+				}
+			});
 			mntmNewMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_MASK));
 			mntmNewMenuItem.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/folder-red-open-icon (1).png")));
 		}
@@ -125,6 +142,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmNewMenuItem_1() {
 		if (mntmNewMenuItem_1 == null) {
 			mntmNewMenuItem_1 = new JMenuItem("Save");
+			mntmNewMenuItem_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					sacuvaj();
+				}
+			});
 			mntmNewMenuItem_1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
 			mntmNewMenuItem_1.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/save-icon (1).png")));
 		}
@@ -133,6 +155,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmNewMenuItem_2() {
 		if (mntmNewMenuItem_2 == null) {
 			mntmNewMenuItem_2 = new JMenuItem("Exit");
+			mntmNewMenuItem_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					izadji();
+				}
+			});
 			mntmNewMenuItem_2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
 		}
 		return mntmNewMenuItem_2;
@@ -140,6 +167,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmAbout() {
 		if (mntmAbout == null) {
 			mntmAbout = new JMenuItem("About...");
+			mntmAbout.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JOptionPane.showMessageDialog(null,	"Autor aplikacije Ana Slovic.","About",JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
 		}
 		return mntmAbout;
 	}
@@ -212,6 +244,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JTextArea getTextArea() {
 		if (textArea == null) {
 			textArea = new JTextArea();
+			textArea.setEditable(false);
 		}
 		return textArea;
 	}
@@ -295,5 +328,32 @@ public class MenjacnicaGUI extends JFrame {
 			mntmIzvrsiZamenu.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/icons/malaa.png")));
 		}
 		return mntmIzvrsiZamenu;
+	}
+	private void otvori() {
+		JFileChooser fc = new JFileChooser();
+		int opcija = fc.showOpenDialog(null);
+		
+		if(opcija == JFileChooser.APPROVE_OPTION) {
+			File f = fc.getSelectedFile();
+			textArea.setText(textArea.getText()+"Ucitan fajl: "+f.getAbsolutePath()+"\n");
+		}
+	}
+	private void sacuvaj() {
+		JFileChooser fc = new JFileChooser();
+		int opcija = fc.showSaveDialog(null);
+		
+		if(opcija == JFileChooser.APPROVE_OPTION) {
+			File f = fc.getSelectedFile();
+			textArea.setText(textArea.getText()+"Sacuvan fajl: "+f.getAbsolutePath()+"\n");
+		}
+	}
+	private void izadji() {
+		int opcija = 
+				JOptionPane.showConfirmDialog(
+					null, "Da li zelite da izadjete iz programa?",
+					"Izlaz", JOptionPane.YES_NO_CANCEL_OPTION);
+			
+			if (opcija == JOptionPane.YES_OPTION)
+				System.exit(0);
 	}
 }
